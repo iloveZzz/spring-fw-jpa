@@ -1,0 +1,8 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.app.mapping.UserInfoDao">  
+<select id="getUser" parameterType="java.util.List" resultType="com.dm.app.entity.PmctlUserInfo">  
+     SELECT * FROM pmctl_user_info 
+  </select>  
+</mapper>  

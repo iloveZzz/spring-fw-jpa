@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.springframework.data</groupId>
+	<artifactId>myspringData</artifactId>
+	<version>1.9.0.BUILD-SNAPSHOT</version>
+
+	<name>Spring Data JPA</name>
+	<description>Spring Data module for JPA repositories.</description>
+	<url>http://projects.spring.io/myspringData</url>
+
+	<parent>
+		<groupId>org.springframework.data.build</groupId>
+		<artifactId>spring-data-parent</artifactId>
+		<version>1.7.0.BUILD-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+
+		<dist.key>DATAJPA</dist.key>
+
+		<eclipselink>2.6.0</eclipselink>
+		<hibernate>3.6.10.Final</hibernate>
+		<jpa>2.0.0</jpa>
+		<querydsl>3.6.3</querydsl>
+		<springdata.commons>1.11.0.BUILD-SNAPSHOT</springdata.commons>
+		<springdatajpa.commons>1.8.0.RELEASE</springdatajpa.commons>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>hibernate-41</id>
+			<properties>
+				<hibernate>4.1.12.Final</hibernate>
+			</properties>
+		</profile>
+		<profile>
+			<id>hibernate-42</id>
+			<properties>
+				<hibernate>4.2.19.Final</hibernate>
+			</properties>
+		</profile>
+		<profile>
+			<id>hibernate-43</id>
+			<properties>
+				<hibernate>4.3.9.Final</hibernate>
+			</properties>
+		</profile>
+		<profile>
+			<id>hibernate-5</id>
+			<properties>
+				<hibernate>5.0.0.Beta2</hibernate>
+			</properties>
+		</profile>
+		<profile>
+			<id>hibernate-5-next</id>
+			<properties>
+				<hibernate>5.0.0-SNAPSHOT</hibernate>
+			</properties>
+			<repositories>
+				<repository>
+					<id>jboss</id>
+					<url>https://repository.jboss.org/nexus/content/repositories/public</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${springdatajpa.commons}</version>
+		</dependency>
+		<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-commons</artifactId>
+				<version>1.10.0.RELEASE</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>jcl-over-slf4j</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+				</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-instrument</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context-support</artifactId>
+	<version>4.1.7.RELEASE</version>
+</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>aspectjweaver</artifactId>
+					<groupId>org.aspectj</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-test</artifactId>
+	<version>4.1.7.RELEASE</version>
+</dependency>
+		<!-- Persistence providers -->
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate}</version>
+		</dependency>
+
+
+		<!-- QueryDsl -->
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>${querydsl}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- CDI -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>${cdi}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>${cdi}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.openwebbeans.test</groupId>
+			<artifactId>cditest-owb</artifactId>
+			<version>${webbeans}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>17.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>2.10.0</version>
+		</dependency>
+	 <dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.0.14</version>
+	</dependency>
+	<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>jstl</artifactId>
+	<version>1.2</version>
+</dependency>
+	
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-webmvc</artifactId>
+	<version>4.1.6.RELEASE</version>
+</dependency>
+<dependency>
+	<groupId>com.google.code.gson</groupId>
+	<artifactId>gson</artifactId>
+	<version>2.3.1</version>
+</dependency>
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis</artifactId>
+	<version>3.3.0</version>
+</dependency>
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis-spring</artifactId>
+	<version>1.2.3</version>
+</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-instrument</artifactId>
+						<version>${spring}</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>default-test</id>
+						<configuration>
+							<excludes>
+								<exclude>**/*</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unit-tests</id>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<phase>test</phase>
+						<configuration>
+							<includes>
+								<include>**/*UnitTests.java</include>
+							</includes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>integration-tests</id>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<phase>test</phase>
+						<configuration>
+							<includes>
+								<include>**/*IntegrationTests.java</include>
+								<include>**/*Tests.java</include>
+							</includes>
+							<excludes>
+								<exclude>**/*UnitTests.java</exclude>
+								<exclude>**/EclipseLink*</exclude>
+							</excludes>
+							<argLine>-javaagent:${settings.localRepository}/org/springframework/spring-instrument/${spring}/spring-instrument-${spring}.jar</argLine>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.6</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjrt</artifactId>
+						<version>${aspectj}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectj}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<verbose>true</verbose>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-aspects</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+					<includes>
+						<include>**/domain/support/AuditingEntityListener.java</include>
+					</includes>
+					<complianceLevel>${source.level}</complianceLevel>
+					<source>${source.level}</source>
+					<target>${source.level}</target>
+					<xmlConfigured>aop.xml</xmlConfigured>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>${apt}</version>
+				<configuration>
+					<logOnlyOnError>true</logOnlyOnError>
+					<processors>
+						<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+						<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+					</processors>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-jpamodelgen</artifactId>
+						<version>1.3.0.Final</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+						<version>17.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>wagon-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.asciidoctor</groupId>
+				<artifactId>asciidoctor-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.springsource.bundlor
+										</groupId>
+										<artifactId>
+											com.springsource.bundlor.maven
+										</artifactId>
+										<versionRange>
+											[1.0.0.RELEASE,)
+										</versionRange>
+										<goals>
+											<goal>bundlor</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-libs-snapshot</id>
+			<url>https://repo.spring.io/libs-snapshot</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-plugins-release</id>
+			<url>https://repo.spring.io/plugins-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<packaging>war</packaging>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.7.10</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

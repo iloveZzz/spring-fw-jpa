@@ -1,0 +1,10 @@
+maven框架整合
+java后台框架：
+spring:ioc容器，aop日志，aop事物
+springMVC:注解配置，json转换整合，拦截器配置
+mybatis或者hibernate;ibatis扫描mapping，hibernateJPA实现
+缓存框架：EHCACHE
+webservice或RMI或RPC,HESSION
+rpc框架：Netty 基于NIO
+web前端框架：seajs+jquery+jqueryPluin
+UI(JQUERYEASYUI,BOOTSTRAP,BOCOUI)

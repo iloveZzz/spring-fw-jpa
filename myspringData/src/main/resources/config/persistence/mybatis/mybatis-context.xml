@@ -12,7 +12,7 @@
         <property name="mapperLocations" value="classpath:/config/sqlMapperMyBatis/*.xml"/>
         <property name="configLocation">
             <bean class="org.springframework.core.io.ClassPathResource">
-                <constructor-arg index="0" value="mybatis-config.xml" />
+                <constructor-arg value="config/persistence/mybatis/mybatis-config.xml" />
             </bean>
         </property>
     </bean>

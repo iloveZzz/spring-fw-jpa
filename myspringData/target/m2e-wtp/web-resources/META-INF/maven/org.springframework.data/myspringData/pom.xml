@@ -14,13 +14,13 @@
 	<parent>
 		<groupId>org.springframework.data.build</groupId>
 		<artifactId>spring-data-parent</artifactId>
-		<version>1.7.0.BUILD-SNAPSHOT</version>
+		<version>1.8.0.BUILD-SNAPSHOT</version>
+		<relativePath />
 	</parent>
-
 	<properties>
 
-		<dist.key>DATAJPA</dist.key>
-
+		<dist.key>DATAJPA</dist.key> 
+ 
 		<eclipselink>2.6.0</eclipselink>
 		<hibernate>3.6.10.Final</hibernate>
 		<jpa>2.0.0</jpa>
@@ -72,10 +72,11 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>${springdatajpa.commons}</version>
-		</dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.8.0.RELEASE</version>
+			</dependency>
+
 		<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-commons</artifactId>
@@ -442,7 +443,7 @@
 		</pluginManagement>
 	</build>
 
-	<repositories>
+     <repositories>
 		<repository>
 			<id>spring-libs-snapshot</id>
 			<url>https://repo.spring.io/libs-snapshot</url>
@@ -452,7 +453,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>spring-plugins-release</id>
-			<url>https://repo.spring.io/plugins-release</url>
+			<url>http://repo.spring.io/plugins-release</url>
 		</pluginRepository>
 	</pluginRepositories>
 

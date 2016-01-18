@@ -24,14 +24,14 @@ public class EhCacheTest {
 	private UserService userService;
 	@Test
 	public void test() throws RemoteException, MalformedURLException {
-		System.out.println(userService.find());
+		System.out.println(userInfoDao.getUser());
 		System.out.println("===================");
 		System.out.println(userService.find());
 		System.out.println("===================");
 		Gson json = new Gson();
 		System.out.println(json.toJson(userService.find()));
 		System.out.println("===================");
-		System.out.println(userService.getLs());
+		System.out.println(userService.find());
 		System.out.println("===================");
 		System.out.println(userService.find());
 //		 LocateRegistry.createRegistry(6600);  

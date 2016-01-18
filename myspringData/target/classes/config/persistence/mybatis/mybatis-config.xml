@@ -7,7 +7,7 @@
         <setting name="logImpl" value="SLF4J" />
     </settings>
 
-    <typeAliases>s
+    <typeAliases>
         <package name="com.dm.app.entity" />
     </typeAliases>
 
